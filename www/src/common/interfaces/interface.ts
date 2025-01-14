@@ -1,4 +1,4 @@
-import { TStatusType } from "common/constants/constants"
+import { TStatusType } from 'common/constants/status'
 
 export interface IEmployee {
   id: number

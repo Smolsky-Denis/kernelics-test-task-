@@ -9,12 +9,12 @@ import {
   StyledRadioButtonContainer,
   StyledSelectContainer,
 } from './Employee.styled'
-import { viewList, TStatusType } from 'common/constants/constants'
+import { viewList, TStatusType } from 'common/constants/status'
 import { MenuItem, SelectChangeEvent } from '@mui/material'
-import { setEmployeeStatus } from '../../../model/actions'
 import { SelectBox } from 'common/ui/SelectBox/SelectBox'
-import { FC, memo, useEffect } from 'react'
+import { setEmployeeStatus } from 'model/actions'
 import { useAppDispatch } from 'app/hooks'
+import { FC, memo } from 'react'
 
 interface IEmployeeProps {
   id: number
@@ -22,17 +22,10 @@ interface IEmployeeProps {
   status: TStatusType
   img: string
 }
+
 export const Employee: FC<IEmployeeProps> = memo(
   ({ id, name, status, img }) => {
     const dispatch = useAppDispatch()
-
-    useEffect(() => {
-      console.log('mount Employee')
-
-      return () => {
-        console.log('UNMOUNT Employee')
-      }
-    }, [])
 
     const handleSelectChange = (e: SelectChangeEvent) => {
       const body = {
@@ -62,18 +55,16 @@ export const Employee: FC<IEmployeeProps> = memo(
               handleChange={handleSelectChange}
               variant="standard"
             >
-              {viewList.map(({ value, title, color }) => {
-                return (
-                  <MenuItem key={color} value={value}>
-                    <StyledMenuItemContent>
-                      <StyledRadioButtonContainer color={color}>
-                        <StyledRadioButton />
-                      </StyledRadioButtonContainer>
-                      {title}
-                    </StyledMenuItemContent>
-                  </MenuItem>
-                )
-              })}
+              {viewList.map(({ value, title, color }) => (
+                <MenuItem key={color} value={value}>
+                  <StyledMenuItemContent>
+                    <StyledRadioButtonContainer color={color}>
+                      <StyledRadioButton />
+                    </StyledRadioButtonContainer>
+                    {title}
+                  </StyledMenuItemContent>
+                </MenuItem>
+              ))}
             </SelectBox>
           </StyledSelectContainer>
         </div>

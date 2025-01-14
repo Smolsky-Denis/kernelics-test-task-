@@ -9,9 +9,9 @@ export const StyledHeader = styled('header')`
   background-color: ${PALETTE.WHITE};
   width: 100%;
   height: 84px;
-  position: fixed;
+  position: sticky;
   top: 0;
-  z-index: 1;
+  z-index: 2;
 `
 
 export const StyledLogo = styled('span')`

@@ -4,6 +4,7 @@ import {
   StyledRadioButton,
   StyledTextField,
   StyledRadioButtonContainer,
+  StyledMenuItemContent,
 } from './ModalWindow.styled'
 import {
   Button,
@@ -14,13 +15,15 @@ import {
   MenuItem,
   SelectChangeEvent,
 } from '@mui/material'
-import { statusTypes, TStatusType, viewList } from 'common/constants/constants'
-import { ChangeEvent, useDeferredValue, useEffect, useState } from 'react'
+import { statusTypes, TStatusType, viewList } from 'common/constants/status'
 import { isValidComplexUrl } from 'common/utils/validateComplexUrl'
+import { ChangeEvent, useDeferredValue, useState } from 'react'
 import { SelectBox } from 'common/ui/SelectBox/SelectBox'
 import { ERROR } from 'common/constants/validation'
 import { createEmployee } from 'model/actions'
 import { useAppDispatch } from 'app/hooks'
+
+const defaultStatusType = statusTypes.Working
 
 interface IModalWindow {
   isOpen: boolean
@@ -28,7 +31,7 @@ interface IModalWindow {
 }
 export const ModalWindow = ({ isOpen, handleClose }: IModalWindow) => {
   const dispatch = useAppDispatch()
-  const [status, setStatus] = useState(statusTypes.Working)
+  const [status, setStatus] = useState(defaultStatusType)
   const [name, setName] = useState('')
   const [img, setImg] = useState('')
   const [errorName, setErrorName] = useState('')
@@ -54,12 +57,7 @@ export const ModalWindow = ({ isOpen, handleClose }: IModalWindow) => {
     let errorImg
     let errorName
 
-    if (!img) {
-      errorImg = ERROR.REQUIRED
-      setErrorImg(errorImg)
-    }
-
-    if (!isValidComplexUrl(img)) {
+    if (img && !isValidComplexUrl(img)) {
       errorImg = ERROR.IMG
       setErrorImg(errorImg)
     }
@@ -73,6 +71,18 @@ export const ModalWindow = ({ isOpen, handleClose }: IModalWindow) => {
       errorName,
       errorImg,
     }
+  }
+
+  const handleModalClose = () => {
+    setTimeout(() => {
+      setName('')
+      setImg('')
+      setErrorName('')
+      setErrorImg('')
+      setStatus(defaultStatusType)
+    }, 1000)
+
+    handleClose()
   }
 
   const handleCreate = (event: React.FormEvent<HTMLFormElement>) => {
@@ -92,25 +102,16 @@ export const ModalWindow = ({ isOpen, handleClose }: IModalWindow) => {
       status: status as TStatusType,
       img,
     }
+
     dispatch(createEmployee(body))
-    handleClose()
-  }
 
-  const cleanWindow = () => {
-    setName('')
-    setImg('')
-    setErrorName('')
-    setErrorImg('')
+    handleModalClose()
   }
-
-  useEffect(() => {
-    return cleanWindow()
-  }, [isOpen])
 
   return (
     <Dialog
       open={isOpen}
-      onClose={handleClose}
+      onClose={handleModalClose}
       PaperProps={{
         component: 'form',
         onSubmit: handleCreate,
@@ -125,7 +126,7 @@ export const ModalWindow = ({ isOpen, handleClose }: IModalWindow) => {
         <StyledForm>
           <StyledTextField
             autoFocus
-            placeholder="Full name"
+            placeholder="Full name*"
             error={!!errorName}
             helperText={errorName}
             type="text"
@@ -139,16 +140,16 @@ export const ModalWindow = ({ isOpen, handleClose }: IModalWindow) => {
             handleChange={handleSelectChange}
             variant="standard"
           >
-            {viewList.map(({ value, title, color }) => {
-              return (
-                <MenuItem key={value} value={value}>
+            {viewList.map(({ value, title, color }) => (
+              <MenuItem key={color} value={value}>
+                <StyledMenuItemContent>
                   <StyledRadioButtonContainer color={color}>
                     <StyledRadioButton />
                   </StyledRadioButtonContainer>
                   {title}
-                </MenuItem>
-              )
-            })}
+                </StyledMenuItemContent>
+              </MenuItem>
+            ))}
           </SelectBox>
           <StyledTextField
             placeholder="Link to photo"
@@ -161,7 +162,7 @@ export const ModalWindow = ({ isOpen, handleClose }: IModalWindow) => {
             onChange={handleImgChange}
           />
           <StyledButtonGroup>
-            <Button variant="outlined" onClick={handleClose}>
+            <Button variant="outlined" onClick={handleModalClose}>
               Cancel
             </Button>
             <Button variant="contained" type="submit">

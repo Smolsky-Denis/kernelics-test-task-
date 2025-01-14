@@ -50,7 +50,6 @@ export const employeeSlice = createSlice({
             action.error.message || 'Failed to fetch data'
         },
       )
-
       .addCase(
         setEmployeeStatus.fulfilled,
         (state: IInitialStateProps, action: PayloadAction<IEmployee[]>) => {

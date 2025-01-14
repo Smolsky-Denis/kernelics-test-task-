@@ -6,6 +6,7 @@ export const getEmployeeList = createAsyncThunk(
   'employeeList/fetchData',
   async () => {
     const response = await apiRequest<any>('GET', 'users')
+
     return response.data
   },
 )
@@ -14,6 +15,7 @@ export const setEmployeeStatus = createAsyncThunk(
   'setEmployeeStatus/fetchData',
   async (body: IEmployee) => {
     const response = await apiRequest<any>('POST', `users/${body.id}`, body)
+
     return response.data
   },
 )
@@ -21,8 +23,8 @@ export const setEmployeeStatus = createAsyncThunk(
 export const createEmployee = createAsyncThunk(
   'createEmployee/fetchData',
   async (body: Omit<IEmployee, 'id'>) => {
-    console.log(body)
     const response = await apiRequest<any>('POST', 'users', body)
+
     return response.data
   },
 )

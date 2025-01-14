@@ -1,27 +1,39 @@
 import TripOriginIcon from '@mui/icons-material/TripOrigin'
-import { ListItemIcon, TextField } from '@mui/material'
+import { TextField } from '@mui/material'
 import styled from 'styled-components'
 
-export const StyledRadioButtonContainer = styled(ListItemIcon)`
+export const StyledRadioButton = styled(TripOriginIcon)`
+  font-size: 14px;
+`
+
+export const StyledRadioButtonContainer = styled('div')`
   color: ${(props) => props.color};
 `
-export const StyledRadioButton = styled(TripOriginIcon)`
-  font-size: small;
+
+export const StyledMenuItemContent = styled('div')`
+  display: flex;
+  justify-content: start;
+  gap: 8px;
 `
+
 export const StyledForm = styled('div')`
   display: grid;
-  grid-template-columns: 2.6fr 1.4fr;
-  gap: 6%;
+  grid-template-columns: 7fr 4fr;
+  column-gap: 20px;
+  row-gap: 10px;
+  margin-top: 20px;
 `
+
 export const StyledTextField = styled(TextField)`
   height: 55px;
 `
+
 export const StyledButtonGroup = styled('div')`
   display: flex;
   justify-content: space-between;
-  gap: 6%;
+
   .MuiButtonBase-root {
-    width: 50%;
+    min-width:90px;
     height: 45px;
   }
 `

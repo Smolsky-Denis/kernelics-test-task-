@@ -1,21 +1,21 @@
 import {
   selectEmployeeList,
   selectEmployeeListErrorError,
-  selectGetEmployeeFilter,
-  selectGetSearchData,
+  selectEmployeeFilter,
+  selectSearchData,
   selectLoading,
-} from '../../../model/selectors'
+} from 'model/selectors'
 import { StyledEmployeeListContainer } from './EmployeeList.styled'
 import { IEmployee } from 'common/interfaces/interface'
 import { Employee } from '../Employee/Employee'
-import { FC, useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useAppSelector } from 'app/hooks'
 
-export const EmployeeList: FC = () => {
+export const EmployeeList = () => {
   const loading = useAppSelector(selectLoading)
   const error = useAppSelector(selectEmployeeListErrorError)
-  const searchData = useAppSelector(selectGetSearchData)
-  const employeeFilter = useAppSelector(selectGetEmployeeFilter)
+  const searchData = useAppSelector(selectSearchData)
+  const employeeFilter = useAppSelector(selectEmployeeFilter)
   const employeeList = useAppSelector(selectEmployeeList)
 
   const [filteredEmployeeList, setFilteredEmployeeList] =
@@ -37,6 +37,7 @@ export const EmployeeList: FC = () => {
       const matchesStatus = employeeFilter
         ? employee.status === employeeFilter
         : true
+
       return matchesName && matchesStatus
     })
 

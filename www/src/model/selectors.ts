@@ -17,19 +17,19 @@ export const selectLoading = createSelector(
 
 export const selectEmployeeListErrorError = createSelector(
   selectEmployeeData,
-   ({ employeeListError }) => {
+  ({ employeeListError }) => {
     return employeeListError
-  }
+  },
 )
 
-export const selectGetEmployeeFilter = createSelector(
+export const selectEmployeeFilter = createSelector(
   selectEmployeeData,
   ({ employeeFilter }) => {
     return employeeFilter
   },
 )
 
-export const selectGetSearchData = createSelector(
+export const selectSearchData = createSelector(
   selectEmployeeData,
   ({ searchData }) => {
     return searchData

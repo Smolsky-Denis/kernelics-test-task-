@@ -52,9 +52,7 @@ export const StyledDivider = styled(Divider)`
 export const StyledFilter = styled('div')`
   width: 20%;
 
-  .MuiInput-root {
-    font-size: 20px;
-  }
+  .MuiInput-root,
   .MuiInputLabel-root {
     font-size: 20px;
   }

@@ -6,36 +6,23 @@ import {
   StyledInput,
   StyledInputAdornment,
 } from './Filter.styled'
-import {
-  ChangeEvent,
-  FC,
-  FocusEvent,
-  useDeferredValue,
-  useEffect,
-  useState,
-} from 'react'
+import { ChangeEvent, FC, useDeferredValue, useEffect, useState } from 'react'
 import { InputAdornment, MenuItem, SelectChangeEvent } from '@mui/material'
 import { setEmployeeFilter, setSearchData } from 'model/reducer'
 import { useAppDispatch, useAppSelector } from 'app/hooks'
 import { SelectBox } from 'common/ui/SelectBox/SelectBox'
-import { selectGetEmployeeFilter } from 'model/selectors'
-import { viewList } from 'common/constants/constants'
+import { selectEmployeeFilter } from 'model/selectors'
 import { Clear, Search } from '@mui/icons-material'
+import { viewList } from 'common/constants/status'
 
 export const Filter: FC = () => {
   const [search, setSearch] = useState('')
   const deferredSearch = useDeferredValue(search)
-  const employeeFilterValue = useAppSelector(selectGetEmployeeFilter)
+  const employeeFilterValue = useAppSelector(selectEmployeeFilter)
   const dispatch = useAppDispatch()
 
   const handleSearchChange = (e: ChangeEvent<HTMLInputElement>) => {
     setSearch(e.target.value)
-  }
-
-  const handleFocus = (
-    e: FocusEvent<HTMLInputElement | HTMLTextAreaElement>,
-  ) => {
-    console.log(e)
   }
 
   const handleClearSearch = () => {
@@ -59,8 +46,7 @@ export const Filter: FC = () => {
       <StyledInput
         type="text"
         variant="outlined"
-        placeholder={'Type to search'}
-        onFocus={handleFocus}
+        placeholder="Type to search"
         value={deferredSearch}
         onChange={handleSearchChange}
         slotProps={{
@@ -88,15 +74,13 @@ export const Filter: FC = () => {
         <SelectBox
           value={employeeFilterValue}
           handleChange={handleSelectChange}
-          label={'Filter by status'}
+          label="Filter by status"
         >
-          {viewList.map(({ value, title }) => {
-            return (
-              <MenuItem key={value} value={value}>
-                {title}
-              </MenuItem>
-            )
-          })}
+          {viewList.map(({ value, title }) => (
+            <MenuItem key={value} value={value}>
+              {title}
+            </MenuItem>
+          ))}
         </SelectBox>
       </StyledFilter>
       <StyledIconButton

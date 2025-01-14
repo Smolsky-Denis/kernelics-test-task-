@@ -16,7 +16,8 @@ export const CreateEmployee = () => {
   return (
     <>
       <StyledButton variant="contained" onClick={handleOpen}>
-        Create <StyledAddIcon />
+        <span>Create</span> 
+        <StyledAddIcon />
       </StyledButton>
       <ModalWindow isOpen={isOpen} handleClose={handleClose} />
     </>

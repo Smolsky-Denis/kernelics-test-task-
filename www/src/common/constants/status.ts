@@ -4,17 +4,17 @@ export type TStatusType =
   | 'LunchTime'
   | 'BusinessTrip'
 
-export interface IView {
-  value: TStatusType
-  title: string
-  color: string
-}
-
 export const statusTypes: { [key: string]: TStatusType } = {
   Working: 'Working',
   OnVacation: 'OnVacation',
   LunchTime: 'LunchTime',
   BusinessTrip: 'BusinessTrip',
+}
+
+export interface IView {
+  value: TStatusType
+  title: string
+  color: string
 }
 
 export const viewList: IView[] = [

@@ -22,13 +22,11 @@ export function SelectBox({
   label,
   variant,
 }: ISelectBoxProps) {
-  const labelRender = value
-    ? null
-    : label && <InputLabel shrink={false}>{label}</InputLabel>
+  const hasLabel = !value && label
 
   return (
     <FormControl variant={variant} fullWidth>
-      {labelRender}
+      {hasLabel && <InputLabel shrink={false}>{label}</InputLabel>}
       <Select value={value} onChange={handleChange}>
         {children}
       </Select>

@@ -4,8 +4,6 @@ import { StyledBodyWrapper, StyledContainer } from 'App.styled'
 import { Header } from 'components/Header/Header'
 import { Filter } from 'components/Filter/Filter'
 import { getEmployeeList } from 'model/actions'
-import { theme } from 'common/constants/theme'
-import { ThemeProvider } from '@mui/material'
 import { useAppDispatch } from 'app/hooks'
 import { useEffect } from 'react'
 
@@ -17,7 +15,7 @@ export function App() {
   }, [dispatch])
 
   return (
-    <ThemeProvider theme={theme}>
+    <>
       <Header />
       <StyledBodyWrapper>
         <StyledContainer>
@@ -26,6 +24,6 @@ export function App() {
         </StyledContainer>
         <EmployeeList />
       </StyledBodyWrapper>
-    </ThemeProvider>
+    </>
   )
 }
