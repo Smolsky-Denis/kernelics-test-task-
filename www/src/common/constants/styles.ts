@@ -6,3 +6,9 @@ export const PALETTE = {
   GREY: '#6c7280',
   GREY_LIGHT: '#c3cfde',
 }
+
+export const MEDIA = {
+  MOBILE: '360px',
+  TABLET: '768px',
+  LAPTOP: '1440px',
+}

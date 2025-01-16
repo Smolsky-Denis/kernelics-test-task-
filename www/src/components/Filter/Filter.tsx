@@ -25,11 +25,8 @@ export const Filter: FC = () => {
     setSearch(e.target.value)
   }
 
-  const handleClearSearch = () => {
+  const handleClear = () => {
     setSearch('')
-  }
-
-  const handleClearFilter = () => {
     dispatch(setEmployeeFilter(''))
   }
 
@@ -56,11 +53,11 @@ export const Filter: FC = () => {
                 <Search />
               </StyledInputAdornment>
             ),
-            endAdornment: deferredSearch && (
+            endAdornment: (deferredSearch || employeeFilterValue) && (
               <InputAdornment position="end">
                 <StyledIconButton
                   aria-label="Reset"
-                  onClick={handleClearSearch}
+                  onClick={handleClear}
                 >
                   <Clear />
                 </StyledIconButton>
@@ -69,7 +66,7 @@ export const Filter: FC = () => {
           },
         }}
       />
-      <StyledDivider orientation="vertical" />
+      <StyledDivider orientation="vertical"  />
       <StyledFilter>
         <SelectBox
           value={employeeFilterValue}
@@ -83,13 +80,6 @@ export const Filter: FC = () => {
           ))}
         </SelectBox>
       </StyledFilter>
-      <StyledIconButton
-        disabled={!employeeFilterValue}
-        aria-label="Reset"
-        onClick={handleClearFilter}
-      >
-        {employeeFilterValue && <Clear />}
-      </StyledIconButton>
     </StyledContainer>
   )
 }

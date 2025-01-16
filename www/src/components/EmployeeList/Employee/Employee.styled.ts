@@ -65,4 +65,5 @@ export const StyledMenuItemContent = styled('div')`
   display: flex;
   justify-content: start;
   gap: 8px;
+  max-width: 100px;
 `

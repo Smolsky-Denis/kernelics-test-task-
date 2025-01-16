@@ -1,5 +1,5 @@
 import { Divider, IconButton, InputAdornment, TextField } from '@mui/material'
-import { PALETTE } from 'common/constants/styles'
+import { MEDIA, PALETTE } from 'common/constants/styles'
 import styled from 'styled-components'
 
 export const StyledContainer = styled('div')`
@@ -14,7 +14,7 @@ export const StyledContainer = styled('div')`
   & .MuiInputBase-root,
   .MuiFormLabel-root,
   .MuiFormLabel-root.Mui-focused {
-    font-size: 20px;
+    font-size: 24px;
   }
 
   & .MuiInputBase-root input::placeholder,
@@ -30,7 +30,7 @@ export const StyledContainer = styled('div')`
 `
 
 export const StyledInput = styled(TextField)`
-  width: 90%;
+  flex: 4;
 `
 
 export const StyledInputAdornment = styled(InputAdornment)`
@@ -45,19 +45,23 @@ export const StyledInputAdornment = styled(InputAdornment)`
 
 export const StyledDivider = styled(Divider)`
   height: 30px;
-  margin-right: 50px;
+  margin-right: 14px;
   background-color: none;
 `
 
 export const StyledFilter = styled('div')`
-  width: 20%;
+  width: 200px;
 
-  .MuiInput-root,
-  .MuiInputLabel-root {
-    font-size: 20px;
+  @media (min-width: ${MEDIA.TABLET}) {
+    width: 250px;
   }
+
   .MuiSvgIcon-root {
     font-size: 40px;
+  }
+
+  & .MuiSvgIcon-root {
+    right: 20px;
   }
 `
 
