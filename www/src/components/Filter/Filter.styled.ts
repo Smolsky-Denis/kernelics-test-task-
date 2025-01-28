@@ -27,6 +27,15 @@ export const StyledContainer = styled('div')`
   & .MuiOutlinedInput-notchedOutline {
     border: none;
   }
+
+  @media (min-width: ${MEDIA.MOBILE}) {
+    display: flex;
+    flex-direction: column;
+  }
+  @media (min-width: ${MEDIA.TABLET}) {
+    display: flex;
+    flex-direction: row;
+  }
 `
 
 export const StyledInput = styled(TextField)`
@@ -47,14 +56,18 @@ export const StyledDivider = styled(Divider)`
   height: 30px;
   margin-right: 14px;
   background-color: none;
+
+  @media (min-width: ${MEDIA.MOBILE}) {
+    display: none;
+  }
+
+  @media (min-width: ${MEDIA.TABLET}) {
+    display: block;
+  }
 `
 
 export const StyledFilter = styled('div')`
-  width: 200px;
-
-  @media (min-width: ${MEDIA.TABLET}) {
-    width: 250px;
-  }
+  width: 250px;
 
   .MuiSvgIcon-root {
     font-size: 40px;

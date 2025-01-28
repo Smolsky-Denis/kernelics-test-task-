@@ -1,4 +1,4 @@
-import { PALETTE } from 'common/constants/styles'
+import { MEDIA, PALETTE } from 'common/constants/styles'
 import styled from 'styled-components'
 import { Button } from '@mui/material'
 
@@ -19,6 +19,10 @@ export const StyledLogo = styled('span')`
   font-size: 37px;
   font-weight: bold;
   color: ${PALETTE.BLUE};
+
+  @media (max-width: ${MEDIA.TABLET}) {
+    font-size: 29px;
+  }
 `
 
 export const StyledButton = styled(Button)`
@@ -26,4 +30,8 @@ export const StyledButton = styled(Button)`
   min-width: 158px;
   height: 45px;
   font-size: 20px;
+
+  @media (max-width: ${MEDIA.TABLET}) {
+    min-width: 100px;
+  }
 `
