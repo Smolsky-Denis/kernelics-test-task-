@@ -1,4 +1,5 @@
 import TripOriginIcon from '@mui/icons-material/TripOrigin'
+import { MEDIA } from 'common/constants/styles'
 import { TextField } from '@mui/material'
 import styled from 'styled-components'
 
@@ -22,10 +23,18 @@ export const StyledForm = styled('div')`
   column-gap: 20px;
   row-gap: 10px;
   margin-top: 20px;
+
+  @media (max-width: ${MEDIA.TABLET}) {
+    grid-template-columns: 1fr;
+  }
 `
 
 export const StyledTextField = styled(TextField)`
   height: 55px;
+
+  @media (max-width: ${MEDIA.TABLET}) {
+    height: auto;
+  }
 `
 
 export const StyledButtonGroup = styled('div')`
@@ -33,7 +42,11 @@ export const StyledButtonGroup = styled('div')`
   justify-content: space-between;
 
   .MuiButtonBase-root {
-    min-width:90px;
+    min-width: 90px;
     height: 45px;
+  }
+
+  @media (max-width: ${MEDIA.TABLET}) {
+    margin-top: 10px;
   }
 `
